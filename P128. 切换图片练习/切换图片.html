@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        window.onload = function(){
+            /*
+                当点击开始按钮图片自动切换，当点击停止按钮图片停止切换
+            */
+
+            //定义一个保存图片路径的数字
+            var imgArr = ["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg","img/5.jpg"]
+
+            //定义一个保存当前图片索引的变量
+            var index = 0;
+
+            //定义一个用来识别表示的变量
+            var timer;
+
+            //获取btn01的标签并绑定单机响应函数
+            var btn01 = document.getElementById("btn01");
+            btn01.onclick = function(){
+                //关闭当前元素上的其他定时器，以防止点击次数过多导致自动切换速度变快
+                clearInterval(timer);
+                timer = setInterval(function(){
+                    //索引自增
+                    index++;
+                    if(index>=imgArr.length){
+                        //把图片调回第一张
+                        index = 0;
+                    }
+                    //修改img的src值
+                    img.src=imgArr[index];
+                },1000)
+            };
+
+            //为btn02标签绑定一个单级响应函数
+            var btn02 = document.getElementById("btn02");
+            btn02.onclick = function(){
+                //点击按钮则关闭自动切换图片
+                clearInterval(timer);
+            };
+
+        };
+
+    </script>
+</head>
+<body>
+    <img src="img/1.jpg" id="img">
+    <br><br>
+    <button id="btn01">开始</button>
+    <button id="btn02">停止</button>
+</body>
+</html>

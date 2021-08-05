@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var height = prompt("请输入您的身高(CM): ");
+        var money = prompt("请输入您的财产(万): ");
+        var handsome = prompt("请输入您颜值评分1-10: ");
+        
+        //过滤非法值
+        if(isNaN(height) || isNaN(money) || isNaN(handsome) || height < 0 || height > 220){
+            alert("嫁不嫁？给我好好填!!")
+        }
+        else{
+            //如果身高满足180并且财产1000万以上，颜值6+,则女方嫁给男方
+            if(height > 180 && money > 10000000 && handsome > 5){
+            alert("你就是我的梦中情人了~");
+            }
+            else if(height > 180 || money > 10000000 || handsome > 5){
+                //如果满足三个条件任何条件
+                alert("嫁吧，比上不足，比下有余");
+            }
+            else{
+                alert("什么狗屁玩意，不嫁!");
+            }            
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

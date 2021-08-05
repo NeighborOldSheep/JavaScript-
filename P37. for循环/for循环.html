@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            for循环：
+                在for循环中，为我们提供了专门的位置来放三个表达式:
+                    1.初始化表达式
+                    2.条件表达式
+                    3.更新表达式
+            
+            for循环语法:
+                for(初始化表达式, 条件表达式, 更新表达式){
+                    语句....
+                }
+                
+                for循环的执行流程:
+                    1.执行初始化表达式,初始化变量(仅执行一次)
+                    2.执行条件表达式，判断是否执行循环
+                        如果为ture则执行循环，
+                        如果为false，终止循环
+                    3.执行更新表达式,执行完成之后，继续重复步骤2
+            
+            如果在for循环中不写任何表达式，只写两个分号(;)，
+                此时循环是一个死循环
+                for(;;){
+                    alert(hello);
+                }
+        */
+
+        //创建一个执行10次的while循环
+        //初始化表达式
+        var  a = 0;
+        //创建一个循环，定义条件表达式
+        while(a < 10){
+            //设置更新表达式
+            alert(a++);
+        }
+
+        for(var i = 0; i < 10; i++){
+            alert(i);
+        }
+        /*
+            for循环中的三个部分可以省略，也可以写在外部
+        */
+       var b = 0;
+
+       for(;b<10;){
+           alert(b++);
+       }
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

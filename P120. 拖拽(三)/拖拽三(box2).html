@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+        }
+    </style>
+
+    <script>
+
+        window.onload = function () {
+
+            /*
+                实现元素拖拽功能
+                1. 当鼠标点击元素时 
+                2. 当鼠标拖动元素,元素会跟着鼠标走
+                3. 当松开鼠标时,元素停留在鼠标松开的位置
+            */
+
+            //获取box1元素
+            var box1 = document.getElementById("box1");
+            //获取box2元素
+            var box2 = document.getElementById("box2");
+            //获取img元素
+            var img = document.getElementById("img");
+
+            //开启box1
+            drag(box1);
+            //开启box2
+            drag(box2);
+            //开启img
+            drag(img);
+
+
+        };
+
+        /*
+            提取一个专门用来设置拖拽的函数
+            参数:
+                1开启拖拽的元素
+        */
+
+        function drag(obj) {
+            //为box1绑定鼠标点击事件
+            obj.onmousedown = function (event) {
+                //设置box1捕获所有鼠标按下的时间
+                /*
+                    setCapture()
+                        -只有IE支持，但是在火狐中调用时不会报错，
+                            而如果使用chrome调用，会报错
+                */
+                /* if(box1.setCapture){
+                     box1.setCapture();
+                } */
+
+                //如果前面的为true，则执行后面的setCapture(),如果前面为false则直接跳过
+                obj.setCapture && obj.setCapture();
+
+                event = event || window.event;
+                //div的偏移量, 鼠标.clientX - 元素.offsetLeft
+                var ol = event.clientX - obj.offsetLeft;
+                //div的偏移量, 鼠标.clientY - 元素.offsetTop
+                var ot = event.clientY - obj.offsetTop;
+
+                //为document绑定鼠标移动事件
+                document.onmousemove = function (event) {
+                    event = event || window.event;
+                    //当鼠标拖动元素,元素会跟着鼠标走
+                    var left = event.clientX - ol;
+                    var top = event.clientY - ot;
+
+                    //改变元素的位置
+                    obj.style.left = left + "px";
+                    obj.style.top = top + "px";
+                };
+                //为box1绑定鼠松开事件
+                obj.onmouseup = function () {
+                    //当松开鼠标时,元素停留在鼠标松开的位置
+                    //取消document.onmousemove事件
+                    document.onmousemove = null;
+                    //取消document.onmouseup事件
+                    document.onmouseup = null;
+                    //当鼠标松开时，取消对事件的捕获
+                    obj.releaseCapture && obj.releaseCapture();
+                };
+                /*
+                当我们去拖拽一个网页中的内容时，浏览器会默认去搜索引擎中搜索内容，
+                此时会导致拖拽功能异常，这个是浏览器提供的默认行为，
+                如果不希望发生这个行为，则可以通过return false来取消默认行为
+
+                但是这招对IE8不起作用
+                */
+                return false;
+            };
+        };
+
+    </script>
+</head>
+
+<body>
+
+    我是一段文字
+
+    <div id="box1"></div>
+    <div id="box2"></div>
+
+    <img src="download.jpg" alt="picture" id="img" style="position: absolute; top:400px;" />
+
+</body>
+
+</html>

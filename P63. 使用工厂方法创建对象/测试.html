@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        //创建一个函数工厂
+        function createPerson(name,age,gender){
+
+            //创建对象
+            var obj = {
+                    name : name,
+                    age : age,
+                    gender : gender,
+                    sayName : function(){
+                        alert(this.name);
+                    }
+
+            }; 
+            return obj;
+        }
+
+        var obj2 = createPerson("猪八戒",18,"男");
+        var obj3 = createPerson("蜘蛛精",16,"女");
+        var obj4 = createPerson("白骨精",26,"女");
+
+        console.log(obj2);
+        console.log(obj3);
+        console.log(obj4);
+
+        obj2.sayName();
+        obj3.sayName();
+        obj4.sayName();
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

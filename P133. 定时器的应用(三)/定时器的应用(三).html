@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/tools.js"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0px;
+        }
+        #box2{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            position: absolute;
+            left: 0px;
+            top: 200px;
+        }
+    </style>
+    <script type="text/javascript" src="../js/tools.js"></script>
+    <script>
+
+        window.onload = function () {
+            //获取box1
+            var box1 = document.getElementById("box1");
+            //获取box2
+            var box2 = document.getElementById("box2");
+            //获取btn01
+            var btn01 = document.getElementById("btn01");
+            //获取btn02
+            var btn02 = document.getElementById("btn02");
+            //获取btn03
+            var btn03 = document.getElementById("btn03");
+            //获取btn04
+            var btn04 = document.getElementById("btn04");
+
+            
+            //btn01点击响应函数
+            btn01.onclick = function () {
+                move(box1,"left",800,20);
+            };
+
+            //btn02点击响应函数
+            btn02.onclick = function () {
+                move(box1,"left",0,10)
+            };
+
+            btn03.onclick = function(){
+                move(box2,"left",800,10);
+            };
+
+            //测试按钮
+            btn04.onclick = function(){
+                /* move(box2,"left",800,10); */
+                /* move(box2,"height",800,10); */
+                move(box2,"width",800,10,function(){
+                    move(box2,"height",400,10,function(){
+                        move(box2,"top",0,10,function(){
+                            move(box2,"width",100,10,function(){
+
+                            });
+                        });
+                    });
+                });
+            };
+
+             
+
+        };
+        
+        //设置定时器表示
+        /* 
+            目前我们的定时器的表示由全局变量timer保存
+                所有的正在执行的定时器都在这个变量中保存
+        */
+        //var timer;
+
+        //尝试创建一个可以执行简单动画的函数
+        /* 
+            参数:
+                obj: 要执行动画的对象
+                attr: 要执行动画的样式(要修改动画的样式) 比如: left yop width height
+                target: 执行动画的目标位置
+                speed: 移动的速度
+                callback: 回调函数，这个函数将会在动画执行完毕以后执行
+        */
+        function move(obj,attr,target,speed,callback) {
+            //关闭上一个定时器
+            clearInterval(obj.timer);
+
+            //获取目前的位置
+            var current = parseInt(getStyle(obj,attr));
+
+            //判断速度的正负值
+            //如果从0向800移动，则speed为正
+            //如果从800向0移动，则speed为负
+            if(current > target){
+                //此时速度应为负值
+                speed = -speed;
+            }
+
+            //开启定时器，让元素执行移动动画
+            //向执行动画的对象中添加一个timer属性，用来保存它自己的定时器的标识
+            obj.timer = setInterval(function () {
+                //获取元素当前位置
+                var oldValue = parseInt(getStyle(obj,attr));
+
+                //设置元素移动速度
+                var newValue = oldValue + speed;
+
+                //判断newValue是否超过800，如果超过设置为800
+                //从800向0移动
+                //向左移动时，需要判断newValue是否小于target,
+                //向右移动时，需要判断newValue是否大于target
+                if ((speed < 0 && newValue < target) || (speed > 0 && newValue > target)) {
+                    newValue = target;
+                }
+
+                //把新值赋值给元素
+                obj.style[attr] = newValue + "px";
+
+                //当元素到达0px的时候停止移动
+                if (newValue == target) {
+                    clearInterval(obj.timer);
+                    //动画执行完毕，调用回调函数
+                    callback && callback();
+                }
+
+            }, 30);
+        };
+
+
+        /* 
+            获取样式函数
+            参数:
+                obj: 元素名称
+                name: 样式名称
+        */
+        function getStyle(obj, name) {
+            //正常浏览器
+            if (window.getComputedStyle) {
+                return getComputedStyle(obj, null)[name];
+            }
+            //IE8
+            else {
+                return obj.currentStyle[name];
+            }
+        };
+
+
+       
+    </script>
+</head>
+
+<body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+    <button id="btn02">点击按钮以后box1向左移动</button>
+    <button id="btn03">点击按钮以后box2向右移动</button>
+    <button id="btn04">测试按钮</button>
+    <br><br>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div style="width:0; height: 1000px; border-left: 1px black solid;position: absolute; left: 800px; top: 0px;"></div>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        /*
+            1.打印99乘法表
+                1*1=1
+                1*2=2   2*2=4
+                1*3=3   2*3=6   3*3=9
+                1*4=4   2*4=8   3*4=16  4*4=16
+                    .....................9*9=81
+            
+            2.打印出1-100之间所有的质数
+
+        */
+
+        //打印99乘法表
+        //设置外层循环，控制高
+        for(var i=1; i<=9; i++){
+            //设置内层循环，控制宽
+            for(var j=1; j<=i; j++){
+                //输出99乘法表，i代表被乘数，j代表乘数
+                //在前后加上span标签，可以方便设置css
+                document.write("<span>" + j + "*" + i + "=" + i*j + "</span>");
+            }
+            
+            //输出换行符
+            document.write("<br />");
+        }
+
+        //打印1-100之间所有的质数
+
+    </script>
+
+    <style>
+        body{
+            width: 100%;
+        }
+        span{
+            display: inline-block;
+            width: 80px;
+            
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>

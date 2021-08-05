@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        /*
+            挑战一: 完成对数字的正则表达式
+        */
+
+        var number = /^[0-9]+$/
+        console.log(number.test("abc"));//false
+        console.log(number.test("123"));//true
+
+        /*
+            挑战二: 完成三位数字的正则表达式
+        */
+        
+        var pattern = /^[0-9]{3}$/
+        console.log(pattern.test("1234"));//false
+        console.log(pattern.test("123"));//true
+
+        /*
+            挑战三: 3-5位的数字
+        */
+
+        var pattern2 = /^[0-9]{3,5}$/
+        console.log(pattern2.test("12345"));//true
+        console.log(pattern2.test("123456"));//false
+
+        /*
+            挑战四: 至少3位数字
+        */
+
+        var pattern3 = /^[0-9]{3,}$/
+        console.log(pattern3.test("12"));//false
+        console.log(pattern3.test("1234578654"));//true
+
+        /*
+            挑战五: 由26个英文字母组成的字母串
+        */
+
+        var pattern4 = /^[A-z]+$/
+        console.log(pattern4.test("abc"));//true
+        console.log(pattern4.test("123"));//false
+
+        /*
+            挑战六: 由数字和26个英文字母组成的字符串
+        */
+
+        var pattern5 = /^[^_][0-9A-z]+$/
+        console.log(pattern5.test("a12bc"));//true
+        console.log(pattern5.test("__123abc__"));//false
+
+        /*
+            挑战七: 日期格式: 年-月-日
+            分析: 年都是4位数字组成，  月都是一到两个数字组成， 日也是有两位数字组成
+                [0-9]{0,4} -  [0-9]{0,2} - [0-9]{0,2}
+        */
+        
+        var pattern6 = /^[0-9]{0,4}-[0-9]{0,2}-[0-9]{0,2}$/
+        console.log(pattern6.test("2016-8-20"));//true
+        console.log(pattern6.test("2016/8/20"));//false
+
+        /*
+            挑战八: 时间格式： 小时:分钟,24小时制
+            分析:   小时都是为两位数字 : 分钟也是两位数字
+        */
+        
+        var pattern7 = /^[0-9]{0,2}:[0-9]{0,2}$/
+        console.log(pattern7.test("13:45"));//true
+        console.log(pattern7.test("13点45"));//false
+
+        /*
+            挑战九: 中国大陆身份证号码: 15位或18位
+        */
+
+        var pattern8 = /^[0-9]{15,18}$/
+        console.log(pattern8.test('42232221999010900'));//true
+        console.log(pattern8.test('absdjiwd'));//false
+
+        /*
+            挑战十: 邮箱匹配: xxxxxx@gamil.com
+        */
+        
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

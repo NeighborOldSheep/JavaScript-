@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            对于成绩大于60分的，输出""合格". 低于60分的，输出'不合格'        
+        */
+        //用score接受用户输入的值
+        var score = +prompt("请输入您的考试分数: ");
+/* 
+        switch(parseInt(score/10)){
+            case 6:               
+            case 7:
+            case 8:
+            case 9: 
+            case 10: 
+                alert("合格啦!继续加油!"); 
+                break;
+            default: 
+                alert("请输入合法的分数~谢谢合作");
+                break; 
+        } */
+
+        //JS中独有的写法，拿score跟60进行比较，返回的结果转换为布尔值，再跟true进行对比。
+        switch(true){
+            case score >= 60:
+                alert("合格");
+                break;
+            default:
+                alert("不合格");
+                break;
+        }
+
+        //if语句写法
+        if(score >= 60){
+            alert("合格");
+        }
+        else if(score < 60){
+            alert("不合格");
+        }
+        else{
+            alert("请输入合法的分数~")
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

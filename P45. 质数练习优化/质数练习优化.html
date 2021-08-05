@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            2.打印1-100中的所有质数
+        */
+
+        //创建布尔值,用来保存结果
+        var flag = true;
+
+        //打印2-100之间所有的数
+        for(var i=2; i<=100; i++){
+            for(var j=2; j<=Math.sqrt(i); j++){
+                if(i%j == 0){
+                    //如果进入判断，则证明i不是质数
+                    flag = false;
+                    break;
+                }
+            }
+            //如果是质数打印i的值
+            if(flag){
+                console.log(i)
+            }
+            
+        }
+
+        //可以通过Math.sqrt()对一个数进行开方
+        var result = Math.sqrt(4);
+
+        console.log("result = " + result)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

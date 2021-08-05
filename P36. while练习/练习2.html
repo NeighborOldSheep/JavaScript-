@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //使用while循环给用户多次输入机会
+        while(true){
+            var score = prompt("请输入小明的期末成绩(0-100):");
+
+            if(score >= 0 && scroe <= 100){
+                //符合分数判断条件，跳出while循环
+                break;
+            }
+            alert("请您输入合法的分数(0-100)~");
+        }
+        
+        //判断值是否合法
+        if(score > 100 || score < 0 || isNaN(score)){
+            alert("请重新输入您的值");
+        }
+        else{
+            //当成绩为100时，输出“奖励一辆BMW”
+            if(score == 100){
+                alert("作为奖励给你一辆BMW！");
+            }
+            else if(score >= 80 && score <= 99){
+                alert("作为奖励给你一台Iphone15s");
+            }
+            else if(score >= 60 && score <= 80){
+                alert("作为奖励给你一本参考书~下次再接再厉鸭！");
+            }
+            else{
+                alert("下次努力！");
+            }
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

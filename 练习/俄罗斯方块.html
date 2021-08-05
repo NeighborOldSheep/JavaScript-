@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 19px;
+            height: 10px;
+            margin: 1px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+    <script>
+
+        window.onload = function(){
+
+            /*
+                让box1能在页面使用上下左右移动
+                左:37, 右39 上:38 下40
+            */
+
+            //定义一个速度变量
+            var speed = 20;
+
+            //获取box1
+            var box1 = document.getElementById("box1");
+            //给document绑定键盘按下事件
+            document.onkeydown = function(event){
+                //event兼容性
+                event = event || window.event;
+                //判断用户按下的键
+                switch(event.keyCode){
+                    case 37:
+                        //按下左键
+                        box1.style.left = box1.offsetLeft - speed + "px";
+                        break;
+                    case 39: 
+                        //按下右键
+                        box1.style.left = box1.offsetLeft + speed + "px";
+                        break;
+                    case 38:
+                        //按下上键
+                        box1.styel.top = box1.offsetTop - speed + "px";
+                        break;
+                    case 40: 
+                        //按下下键
+                        box1.style.top = box1.offsetTop + speed + "px";
+                }
+            };
+
+        };
+        
+    </script>
+</head>
+<body>
+    <div id="box1"></div>
+</body>
+</html>

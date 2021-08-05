@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer{
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: greenyellow;
+            /*文本居中*/
+            text-align: center;
+        }
+    </style>
+
+    <script>
+
+        window.onload = function(){
+
+            /*
+                点击按钮切换图片
+            */
+
+            //获取两个按钮
+            var prev = document.getElementById("prev");
+            var next = document.getElementById("next");
+
+            /*
+                要切换图片就是要修改img标签的src属性
+                
+            */
+
+            //获取img标签
+            var img = document.getElementsByTagName("img")[0];
+
+            //创建一个数组，用来保存图片的路径
+            var imgArr = ["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg","img/5.jpg"];
+            
+
+            //创建一个变量，来保存当前正在显示图片的索引
+            var index = 0;
+
+            //设置提示文字
+            //获取id为info的p元素
+            var info = document.getElementById("info");
+            //设置提示文字
+            info.innerHTML = "一共 " + imgArr.length + " 张图片， 现在第 " + (index+1) + " 张";
+
+            //分别为两个按钮绑定单机响应函数
+            prev.onclick = function(){
+                /*
+                    切换到上一张，index自减
+                */
+                index--;
+                //判断index是否小于0
+                if(index < 0){
+                    //如果index小于0,则调回图片4.
+                    index = imgArr.length - 1;
+                }
+
+                img.src = imgArr[index];
+
+                //当点击按钮以后，重新设置信息
+                info.innerHTML = "一共 " + imgArr.length + " 张图片， 现在第 " + (index+1) + " 张";
+            };
+
+            next.onclick = function(){
+                /*
+                    切换到下一张,index自增
+                */
+                index++;
+                //判断index是否大于4
+                if(index > imgArr.length - 1){
+                    //如果index大于4则跳回图片1
+                    index = 0;
+                };
+
+                //切换图片就是修改img的src属性
+                //要修改一个元素属性， 元素.属性 = 属性值
+                img.src = imgArr[index];
+
+                info.innerHTML = "一共 " + imgArr.length + " 张图片， 现在第 " + (index+1) + " 张";
+            };
+
+            //给document绑定一个键盘按下事件
+            document.onkeydown = function(event){
+                event = event || window.event;
+                /*
+                    键盘按下左键则往后退
+                    键盘按下右键则向前翻
+                */
+                switch(event.keyCode){
+                    //左键37
+                    case 37:
+                        //切换到上一张
+                        index--;
+                        if(index < 0){
+                            //切换到最后一张图片
+                            index = imgArr.length-1;
+                        }
+                        info.innerHTML = "一共 " + imgArr.length + " 张图片， 现在第 " + (index+1) + " 张";
+                        img.src = imgArr[index];
+                        break;
+                    //右键39    
+                    case 39:
+                        //切换到下一张
+                        index ++;
+                        //如果index大于图片数组的长度
+                        if(index > imgArr.length-1){
+                            //切换回第一张图片
+                            index = 0;
+                        }
+                        img.src = imgArr[index];
+                        info.innerHTML = "一共 " + imgArr.length + " 张图片， 现在第 " + (index+1) + " 张";
+                        break;
+                }
+            };
+        };
+
+    </script>
+</head>
+<body>
+    <div id="outer">
+
+        <p id="info"></p>
+
+        <img src="img/1.jpg" alt="冰棍" />
+
+        <button id="prev">上一张</button>
+        <button id="next">下一张</button>
+    </div>
+</body>
+</html>

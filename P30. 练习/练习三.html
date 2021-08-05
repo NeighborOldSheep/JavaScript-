@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        alert("请输入三个数字，我会从小到大排序~");
+        var num1 = prompt("请输入数字: ");
+        var num2 = prompt("请您再次输入数字: ");
+        var num3 = prompt("请最后一次输入数字: ");
+        
+        //用if语句写出判断大小的条件语句
+        if(num1 > num2 > num3){
+            alert(num3 + "<" + num2 + "<" + num1);
+        }
+        else if(num1 > num3 > num2){
+            alert(num2 + "<" + num3 + "<" + num1);
+        }
+        else if(num2 > num1 > num3){
+            alert(num3 + "<" + num1 + "<" + num2);
+        }
+        else if(num2 > num3 > num1){
+            alert(num1 + "<" + num3 + "<" + num2);
+        }
+        else if(num3 > num1 > num2){
+            alert(num2 + "<" + num1 + "<" + num3);
+        }
+        else{
+            alert(num1 + "<" + num2 + "<" + num3);
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+        #box2{
+            width: 100px;
+            height:100px;
+            background-color: yellow;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+        }
+    </style>
+
+    <script>
+
+        window.onload = function () {
+
+            /*
+                实现元素拖拽功能
+                1. 当鼠标点击元素时 
+                2. 当鼠标拖动元素,元素会跟着鼠标走
+                3. 当松开鼠标时,元素停留在鼠标松开的位置
+            */
+
+            //获取box1元素
+            var box1 = document.getElementById("box1");
+
+            //为box1绑定鼠标点击事件
+            box1.onmousedown = function (event){
+                event = event || window.event;
+                //div的偏移量, 鼠标.clientX - 元素.offsetLeft
+                var ol = event.clientX - box1.offsetLeft;
+                //div的偏移量, 鼠标.clientY - 元素.offsetTop
+                var ot = event.clientY - box1.offsetTop;
+
+                //为document绑定鼠标移动事件
+                document.onmousemove = function (event) {
+                    event = event || window.event;
+                    //当鼠标拖动元素,元素会跟着鼠标走
+                    var left = event.clientX - ol;
+                    var top = event.clientY - ot;
+                    
+                    //改变元素的位置
+                    box1.style.left = left + "px";
+                    box1.style.top = top + "px";
+                };
+            };
+
+            //为box1绑定鼠松开事件
+            box1.onmouseup = function(){
+                //当松开鼠标时,元素停留在鼠标松开的位置
+
+                //取消document.onmousemove事件
+                document.onmousemove = null;
+                //取消document.onmouseup事件
+                document.onmouseup = null;
+
+            };
+
+        };
+
+    </script>
+</head>
+
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+</body>
+
+</html>

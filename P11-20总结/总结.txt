@@ -1,0 +1,233 @@
+JS强制类型转换:
+    -指将一个类型强制转换为其它类型，主要是针对String Number Boolean进行操作
+
+-其它类型转为String
+    方式一:
+        -调用方法toString():
+        -null和undefined不能调用，会报错
+        -使用该方法不会影响原变量
+        -例子: 
+                var a = 123;
+                a = a.toString();
+                console.log(a) //"123"
+    
+    方式二:
+        -调用String()函数
+        -使用该方法对Number和Boolean效果和toString()一样
+            不过对null 和 undefined会变成 "null" "undefined"
+        -例子:
+                var a = 123;
+                String(a)
+                console.log(a) //"123"
+---------------
+-其它类型转换为Number
+    方式一:
+        使用Number函数转换:
+            --字符串 ==> 数字
+                1.如果字符串是纯数字，则直接转换为数字
+                2.如果字符串中有非数字的内容，则转换为NaN
+                3.如果字符串是空串，则转换为0
+            --Boolean ==> 数字:
+                True为1 False为0
+            --Null ==> 数字:
+                值为0
+            - undefined --> 数字
+                 1.结果为NaN                  
+
+    方式二:
+        -使用parseInt(),该方法可以把字符串转换为一个整数
+        -例子:
+            var a = "123px456";
+            a = parseInt(a);
+            console.log(a) // 123
+        -使用parseFloat(),该方法可以把数字转换为一个浮点数
+        -例子:
+            var a = "123.456.789";
+            a = parseFloat(a);
+            console.log(a); // 123.456
+        特殊情况: 如果对非字符串以为的类型进行parseInt()或者parseFloat()操作，
+                        会先转换为string然后在操作。
+                -例子:
+                     var a = true:
+                     a = parseInt(a); //会先把true变为"true"
+                     console.log(a) //结果为1，因为true转换为数字为1
+-----------------------------
+-其他进制转换为Boolean:
+    -方式一:
+        使用Boolean()函数
+            数字 ==> Boolean
+                -除了0和NaN都为True
+            字符串 ==> Boolean
+                -除了空串都为True
+            null ==> Boolean
+                -null为false
+            undefined ==> Boolean
+                -undefined 为false
+            object ==> Boolean 
+                -为true
+    -方式二:
+        隐式转换:
+            使用两次非（!!）运算，即可转换为Boolean值
+        -例子:
+            var a = 123;
+            a = !!a; //123进行第一次取反为false,再次取反为true
+            console.log(a); //True
+-----------------------------
+JS中其他进制的数字:
+    -表示16进制以， 0x开头
+        -例子: a = 0xff;
+    -表示8进制以， 0开头 
+        -例子 a = 07;
+    -表示2进制以， 0b开头
+        -例子： a = 0b10;
+        并不是所有浏览器都兼容！！！
+    
+    -不兼容的情况
+     a = 070;
+     //我们在parseInt函数进行传参，第二个参数来制定数字的进制
+     a = parseInt(a, 8)
+-----------------------------
+            运算符也叫操作符
+                通过运算符可以对一个或多个值进行运算,并获取运算结果
+                比如: typeof就是运算符，可以来获得一个值的类型
+                        它会将该值的类型以字符串的形式返回    
+                        number string boolean undefined object
+
+            算术运算符
+                当对非Number类型的值进行运算时，会将这些值转换为Number然后再运算
+                    任何值和NaN做运算都得NaN
+
+                +
+                    +可以对两个值进行加法运算，并将结果返回
+                    如果对两个字符串进行加法运算，则会做拼串
+                        会将两个字符串拼接。
+                    任何的值和字符串做加法运算，都会先转换为字符串，然后再和字符串做拼串的操作
+                -
+                    -可以对两个值进行减法运算，并返回结果
+                *
+                    *可以对两个值进行乘法预算
+                /
+                    /可以对两个值进行除法运算
+                %
+                    %取模运算(取余数)
+--------------------------------
+一元运算:
+    -正号不会发生任何改变
+    -负号
+        -负号可以对数字进行取反操作
+        -原理和Number()一样
+        -例子:
+            var a = "123";
+            a = -a;
+            console.log(a); //-123
+        -如果负号对一个非Number类型进行操作，会将其转换为Number然后再进行取反。
+--------------------------------
+Js中的自增自减
+    自增:
+        -通过自增可以使变量在自身增一
+        -对于一个变量自增后，原变量的值也会增1
+        a++:
+            -先赋值后自增
+            -例子：
+                var a = 10;
+                b = a++;
+                console.log(b); //10，因为a的值为10当a++后会先把10赋值给b
+                                            此时b为10，完成赋值以后才会自增
+        ++a：
+            -先自增后赋值
+            -例子:
+                var a = 10;
+                b = ++a;
+                console.log(b); //11,因为a的值是10，先自增1所以是10+1,然后再赋值给b
+    自减：跟自增同理
+        a--: 先赋值后自减
+        --a: 先自减后赋值
+-----------------------------------
+JS中的逻辑运算符:
+    ! 非运算:
+        -可以对一个Boolean值进行取反操作, true 变false, false变true
+        -我们可以利用该特性对一个值进行两次非运算，这样就可以直接转换为Boolean值
+        -例子:
+            var a = 0;
+            a = !!a; //0在Boolean里面代表false，取反一次为true，再次取反为false
+            console.log(a); //值为false
+    
+
+    && 与运算:
+        -运算规则:
+            两个值中有一个为false，则值为false
+            两个值中两个都为true，则返回true
+        -短路特性: 如果第一个值为false则不会看第二个值，并返回第一个值的结果
+        -例子:
+            var a  = 0 && "你看我出不出来~";
+            console.log(a); //此时结果为0,因为0为false, &&运算会直接返回false的结果
+    
+    || 或运算:
+        -运算规则:
+            两个值中有一个为true，则返回值为true
+            两个值中两个值都为false,则返回false
+        -短路特性: 如果第一个值为true，则不会看第二个值，并返回第一个值的结果
+        -例子:
+            "123" || alert("你看我出不出来~");
+            //此时并不会弹窗，因为前者为true，JS则不会查看第二个值，而直接返回第一个值123.
+  --------------------------------------------
+
+
+
+  练一练:
+
+
+1. 请说出两种转换为string类型的方法，并说出利弊
+
+
+
+2.  请写出console.log(a); 最后输出的结果
+    var a = "undefined"; 
+    a = parseInt(a);
+    console.log(a);
+    console.log(typeof a);
+
+
+3. 请问下列的值是多少console.log()会分别打印出的值是什么?
+        var n1 = 10;
+        var n2 = 20;
+
+        var n = n1++;
+
+        console.log('n = ' + n); 
+        console.log('n1 = ' + n1);
+        n = ++n1;
+        console.log("n = " + n);
+        console.log("n1 = " + n1);
+        n = n2--;
+        console.log("n = " + n);
+        console.log("n2 = " + n2);
+        n = --n2;
+        console.log("n = " + n);
+        console.log("n2 = " + n2);
+
+4. 请写出在JS中如何表示二进制、十六进制、八进制的值.
+
+
+
+5. 请写出console.log()会输出的值 
+    var a = 123;
+    console.log("1" + a);
+
+
+6. 请写出console.log()会输出的值
+    var a = 55;
+    console.log("56" - 55);
+
+7. 请写出下列会输出的值.
+    alert("帅哥你好") || alert("你看我出不出来~");
+
+8. 请写出下列会输出的值i
+    "" && alert(0);
+
+9. 请用非运算将a的值转为boolean值
+    var a = 0;
+
+10. 请写出下列会输出的值:
+    "undefined" && alert("nulll")
+

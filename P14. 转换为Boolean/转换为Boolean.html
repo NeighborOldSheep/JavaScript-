@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        /*
+            将其他数据类型转换为Boolean
+                -使用Boolean()函数
+                    -数字 --> Boolean
+                        -除了0和Nan，其余的都是True
+                    -字符串 --> Boolean
+                        -除了空值，其余都是True
+                    - null 和 undefined都会转换为False
+                    -对象也会转换为true
+            方式二(隐式类型转换):
+                -为任意的数据类型做两次非运算(!!),即可将其转换位布尔值
+                -例子:
+                    var a = "hello";
+                    a = !!a; // true
+
+        */
+
+
+        var a = 123;//true
+         a = -123;//true
+         a= 0 ; //false
+         a = Infinity; //true
+         a = null; //false
+
+        //调用Boolean()函数来将a转换为Boolean值
+        a = Boolean(a);
+
+        a = "hello";
+        a = Boolean(a);
+
+        a = null; //false
+        a = Boolean(a);
+
+        a = undefined;//false
+        a = Boolean(a);
+
+        a = null;
+
+        console.log(typeof a);
+        console.log(a);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

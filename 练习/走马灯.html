@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+    <title>走马灯的特效</title> 
+    <script type="text/javascript"> 
+        function scroll() { 
+            //将头文件标题赋值给 tit 
+            var tit = document.title; 
+            //获取tit的第一个字符 
+            var fir = tit.charAt(0); 
+            //获取tit剩余的字符 
+            var left = tit.substring(1, tit.length) 
+            //将头文件标题重新赋值为 （原标题的第二个字符到最后一个字符+原标的的第一个字符） 
+            document.title = left + fir; 
+        } 
+        //让scroll每隔2000毫秒就执行scroll()一次，从而实现走马灯的效果 
+        setInterval("scroll()", 2000); 
+    </script> 
+</head> 
+<body> 
+ 
+</body> 
+</html>

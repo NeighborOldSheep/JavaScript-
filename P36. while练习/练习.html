@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            加入投资的年利率为5%,试求从1000块增长到5000块，需要花费多少年?
+        */
+        
+        //定义变量本金
+        var money = 1000;
+        //定义年利率5%
+        var interest = 1.05;
+        //定义年数
+        var year = 0;
+
+        //while循环直到本金涨到5000为止
+        while(money <= 5000){
+            money = money * interest;
+            year++;
+            if(money >= 5000){
+                alert("第" + year + "年")
+                break;
+            }
+        }
+
+
+
+    </script>
+</head>
+<body>
+     
+</body>
+</html>

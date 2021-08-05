@@ -1,0 +1,11 @@
+消息冒泡功能:
+    html:
+        一个button和一个存放冒泡信息的container
+
+    css:
+        自己决定冒泡信息的位置,颜色...
+
+    js:
+        当点击button的时候触发createNotification函数
+            该函数创建一个冒泡信息的元素,并添加到contianer里面
+            设置timeout时间，过一段时间信息自动消除

@@ -1,0 +1,10 @@
+汉堡按钮菜单:
+    html:
+        一个button加上一个nav里面包含的ul列表
+
+    css:
+        button跟nav开启fixed定位,来固定位置
+        加上transform X-axis 和 transition来提升视觉效果
+
+    js:
+        点击button的时候同时给button和nav加上active一个active的class
